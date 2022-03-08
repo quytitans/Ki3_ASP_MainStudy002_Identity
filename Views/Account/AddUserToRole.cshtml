@@ -1,0 +1,49 @@
+﻿@model MiddleTestAuthetication.Models.Tranfer001
+@{
+    ViewBag.Title = "AddUserToRole";
+    var listAccount = Model.ListAccount;
+    var listRole = Model.ListRole;
+}
+
+<h2>AddUserToRole</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Account</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">USER:</label>
+            <div class="col-md-10">
+                @*<input type="text" name="user" value="" class="form-control" />*@
+                <select name="user" class="form-control">
+                    @foreach (MiddleTestAuthetication.Models.Account acc in listAccount)
+                    {
+                        <option value="@acc.Id">@acc.UserName</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">ROLE:</label>
+            <div class="col-md-10">
+                @*<input type="text" name="role" value="" class="form-control" />*@
+                <select name="role" class="form-control">
+                    @foreach (MiddleTestAuthetication.Models.Role role1 in listRole)
+                    {
+                        <option value="@role1.Id">@role1.Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

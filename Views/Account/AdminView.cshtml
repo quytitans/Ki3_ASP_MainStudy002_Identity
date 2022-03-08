@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "AdminView";
+}
+
+<h2>AdminView</h2>
+<div>
+    <h3>
+        @Html.ActionLink("Add Account", "AddAccount", "Account")
+    </h3>
+</div>
+<div>
+    <h3>
+        @Html.ActionLink("Authorization", "AddUserToRole", "Account")
+    </h3>
+</div>
+<div>
+    <h3>
+        @Html.ActionLink("View All Account", "GetAll", "Account")
+    </h3>
+</div>
