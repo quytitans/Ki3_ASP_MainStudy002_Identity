@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using MiddleTestAuthetication.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,5 +11,6 @@ namespace MiddleTestAuthetication.Models
     {
         public List<Account> ListAccount { get; set; }
         public List<Role> ListRole { get; set; }
+
     }
 }

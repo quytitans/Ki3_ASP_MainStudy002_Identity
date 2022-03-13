@@ -55,13 +55,14 @@ namespace MiddleTestAuthetication.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]        
-        public async Task<ActionResult> AddAccount(string UserName, string Email, string PasswordHash, string PhoneNumber)
+        public async Task<ActionResult> AddAccount(string UserName, string Email, string PasswordHash, string PhoneNumber, int Status)
         {
             Account account = new Account()
             {
                 UserName = UserName,
                 Email = Email,
-                PhoneNumber = PhoneNumber
+                PhoneNumber = PhoneNumber,
+                Status = Status
             };
             var result = await userManager.CreateAsync(account, PasswordHash);
             if (result.Succeeded)
@@ -104,7 +105,8 @@ namespace MiddleTestAuthetication.Controllers
 
         public ActionResult GetAll()
         {
-
+            ViewData["userManager"] = userManager;
+            ViewData["roleList"] = roleManager.Roles.ToList();
             tranfer001 = new Tranfer001()
             {
                 ListAccount = db.Users.ToList(),
@@ -148,6 +150,45 @@ namespace MiddleTestAuthetication.Controllers
                     return View("ViewError");
                 }
             }
+        }
+
+        public ActionResult ChangeRoleAjax(string roleIds, string roleToChange)
+        {
+            var arrayId = roleIds.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+            IdentityRole role = db.Roles.Find(roleToChange);
+            if (role == null)
+            {
+                return View("ViewError");
+            }
+            var accounts = db.Users.Where(f => arrayId.Contains(f.Id)).ToList();
+            foreach (var acc in accounts)
+            {
+                if (userManager.IsInRole(acc.Id, roleToChange))
+                {
+                    continue;
+                }
+                userManager.AddToRole(acc.Id, role.Name);
+            }
+            ViewData["userManager"] = userManager;
+            ViewData["roleList"] = roleManager.Roles.ToList();    
+            return PartialView("ListAccount", userManager.Users.ToList());
+        }
+
+        public async Task<ActionResult> DeleleRolesAjax(string roleIdsToDelete)
+        {
+            var arrayId = roleIdsToDelete.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries);
+            var accounts = db.Users.Where(f => arrayId.Contains(f.Id)).ToList();            
+            foreach (var acc in accounts)
+            {
+                var roles = userManager.GetRoles(acc.Id);
+                foreach(var role in roles)
+                {
+                 await userManager.RemoveFromRoleAsync(acc.Id, role);
+                } 
+            }
+            ViewData["userManager"] = userManager;
+            ViewData["roleList"] = roleManager.Roles.ToList();
+            return PartialView("ListAccount", userManager.Users.ToList());
         }
     }
 }

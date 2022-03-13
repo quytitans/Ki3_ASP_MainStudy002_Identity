@@ -93,7 +93,6 @@ D:\07. ASP NET MVC Project\MiddleTestAuthetication\bin\System.Web.WebPages.Razor
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\bin\Newtonsoft.Json.xml
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\bin\Antlr3.Runtime.pdb
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.csproj.AssemblyReference.cache
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.csproj.CoreCompileInputs.cache
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.csproj.CopyComplete
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.dll
@@ -102,3 +101,4 @@ D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetica
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.csproj.GenerateResource.cache
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.Migrations.FirstMiragtion1.resources
 D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.Migrations.FirstMiragtion2.resources
+D:\07. ASP NET MVC Project\MiddleTestAuthetication\obj\Debug\MiddleTestAuthetication.csproj.AssemblyReference.cache

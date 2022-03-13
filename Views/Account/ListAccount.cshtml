@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<MiddleTestAuthetication.Models.Account>
+@using Microsoft.AspNet.Identity;
+@using MiddleTestAuthetication.Models;
+@using MiddleTestAuthetication.Util
+@{
+    ViewBag.Title = "Index";
+    var userManager = ViewData["userManager"] as UserManager<Account>;
+}
+<table class="table">
+    <tr>
+        <th>
+            <input type="checkbox" name="checkAll" class="checkbox-item" id="checkAll" />
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>Roles</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" name="checkItem" class="checkbox-item" value="@item.Id" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @{
+                    var stringStatus = ConvertAll.ConvertIntStatusToString(item.Status);
+                }
+                @stringStatus
+            </td>
+            <td>
+                @{
+                    var roles = userManager.GetRoles(@item.Id);
+                }
+                @string.Join(", ", roles)
+            </td>
+        </tr>
+    }
+
+</table>
